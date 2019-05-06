@@ -25,12 +25,12 @@ int Widelec::getFil()
 void Widelec::zwolnij()
 {
     fil=-1;
-    mut.unlock();
+    mut.unlock();   //odblokowanie dostępu innych wątków (filozofów) do widelca
 }
 
 void Widelec::zajmij(int filozof)
 {
-    mut.lock();
+    mut.lock();     //zablokowanie dostępu innych wątków (filozofów) do widelca
     fil=filozof;
 }
 

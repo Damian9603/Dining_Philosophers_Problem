@@ -10,30 +10,30 @@
 class Filozof
 {
     private:
-    int ID;
-    int prawy;
-    int lewy;
-    Widelec * widelce;
-    WINDOW * okno;
-    int x;
-    int y;
-    bool siedzi=false;
+    int ID;             //ID filozofa
+    int prawy;          //ID widelca po prawej stronie filozofa
+    int lewy;           //ID widelca po lewej stronie filozofa
+    Widelec * widelce;  //wskaźnik na tablicę widelców
+    WINDOW * okno;      //wskaźnik na okno ncurses
+    int x;              //współrzędna filozofa
+    int y;              //współrzędna filozofa
+    bool siedzi=false;  //argument, w którym przechowywane jest to czy filozof siedzi przy stole
 
     public:
     Filozof(int idneks, int max, Widelec * wid, WINDOW * ok);
     Filozof();
-    void jedz();
-    void mysl();
-    int getID();
-    void setx(int a);
-    void sety(int b);
-    int getx();
-    int gety();
-    int getPrawy();
-    int getLewy();
-    void siadz();
-    void wstan();
-    bool getSiedzi();
+    void jedz();        //metoda odpowiadająca za jedzenie
+    void mysl();        //metoda odpowiadająca za myślenie
+    int getID();        //pozyskanie ID filozofa
+    void setx(int a);   //ustawienie współrzędnej filozofa
+    void sety(int b);   //ustawienie współrzędnej filozofa
+    int getx();         //pobranie współrzędnej filozofa
+    int gety();         //pobranie współrzędnej filozofa
+    int getPrawy();     //pobranie indeksu prawego widelca filozofa
+    int getLewy();      //pobranie indeksu lewego widelca filozofa
+    void siadz();       //metoda odpowiadająca za siadanie filozofa przy stole
+    void wstan();       //metoda odpowiadająca za wstawanie filozofa od stołu
+    bool getSiedzi();   //sprawdzenie czy filozof siedzi przy stole
 };
 
 #endif

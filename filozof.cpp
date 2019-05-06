@@ -33,6 +33,7 @@ Filozof::Filozof(int indeks, int max, Widelec * wid, WINDOW * ok )
 
 void Filozof::jedz()
 {
+    //pierwszym zajmowanym widelcem jest widelec z mniejszym ID
 #pragma region zajmowanie widelcow
     if(lewy<prawy)
     {
@@ -42,8 +43,9 @@ void Filozof::jedz()
     {
         widelce[prawy].zajmij(ID);
     }
-    int random= rand()%100;
-    float czas = 500000+random;
+    //czas podnoszenia widelca 0.5s-0.6s
+    int random= rand()%10000;
+    float czas = 500000+10*random;
     usleep(czas);
     if(lewy>prawy)
     {
@@ -54,19 +56,20 @@ void Filozof::jedz()
         widelce[prawy].zajmij(ID);
     }
     
-
-    random= rand()%100;
-    czas = 500000+random;
+    //czas podnoszenia widelca 0.5s-0.6s
+    random= rand()%10000;
+    czas = 500000+10*random;
     usleep(czas);
 
 #pragma endregion
 
 #pragma region jedzenie
-    random=rand()%20000;
-    czas = 2+(0.0001*random);
-    sleep(czas);
+    //czas jedzenia 2s-3s
+    random=rand()%10000;
+    czas = 2000000+(100*random);
+    usleep(czas);
 #pragma endregion
-
+    //pierwszym zwalnianym widelcem jest widelec z większym ID
 #pragma region zwalnianie widelcow
     if(lewy<prawy)
     {
@@ -76,8 +79,9 @@ void Filozof::jedz()
     {
         widelce[lewy].zwolnij();
     }
-    random= rand()%100;
-    czas = 500000+random;
+    //czas odkładania widelca 0.4s-0.5s
+    random= rand()%10000;
+    czas = 400000+10*random;
     usleep(czas);
     if(lewy<prawy)
     {
@@ -87,8 +91,9 @@ void Filozof::jedz()
     {
         widelce[prawy].zwolnij();
     }
-    random= rand()%100;
-    czas = 500000+random;
+    //czas odkładania widelca 0.4s-0.5s
+    random= rand()%10000;
+    czas = 400000+10*random;
     usleep(czas);
 #pragma endregion
 
@@ -96,9 +101,10 @@ void Filozof::jedz()
 
 void Filozof::mysl()
 {
-    int random=rand()%20000;
-    float czas = 5+(0.0001*random);
-    sleep(czas);
+    //czas myslenia 5s-6s
+    int random=rand()%10000;
+    int czas = 5000000+(100*random);
+    usleep(czas);
 }
 
 int Filozof::getID()
