@@ -18,6 +18,7 @@ class Filozof
     int x;              //współrzędna filozofa
     int y;              //współrzędna filozofa
     bool siedzi=false;  //argument, w którym przechowywane jest to czy filozof siedzi przy stole
+    int stan=-1;         //stan filozofa 0-mysli, 1-czeka, 2-je, -1-stan początkowy
 
     public:
     Filozof(int idneks, int max, Widelec * wid, WINDOW * ok);
@@ -34,6 +35,7 @@ class Filozof
     void siadz();       //metoda odpowiadająca za siadanie filozofa przy stole
     void wstan();       //metoda odpowiadająca za wstawanie filozofa od stołu
     bool getSiedzi();   //sprawdzenie czy filozof siedzi przy stole
+    int getStan();      //sprawdzanie co filozof aktualnie robi
 };
 
 #endif

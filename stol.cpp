@@ -43,6 +43,7 @@ Stol::Stol(int ilosc)
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);
     init_pair(2, COLOR_CYAN, COLOR_BLACK);
     init_pair( 3, COLOR_RED, COLOR_BLACK );
+    init_pair(4, COLOR_GREEN, COLOR_BLACK);
 
 }
 
@@ -70,7 +71,7 @@ void Stol::start()
     bool koniec = false;
     while (koniec!=true)
     {
-        usleep(300000);
+        usleep(100000);
         clear();
         wyswietl();
         rysuj();
@@ -226,15 +227,37 @@ void Stol::wyswietl()
     printw("o");
     attroff(COLOR_PAIR(3));
     attroff( A_BOLD);
-    mvprintw(3,0, "Widelec nieuzywany: ");
+
+    mvprintw(3,0,"Stany Filozofow: ");
+    attron( COLOR_PAIR( 4) );
+    attron( A_BOLD);
+    printw("?");
+    attroff( A_BOLD);
+    attroff(COLOR_PAIR(4));
+    printw(" - mysli, ");
+    attron( COLOR_PAIR( 4) );
+    attron( A_BOLD);
+    printw(".");
+    attroff( A_BOLD);
+    attroff(COLOR_PAIR(4));
+    printw(" - czeka, ");
+    attron( COLOR_PAIR( 4) );
+    attron( A_BOLD);
+    printw("!");
+    attroff( A_BOLD);
+    attroff(COLOR_PAIR(4));
+    printw(" - je");
+    
+
+    mvprintw(4,0, "Widelec nieuzywany: ");
     attron( COLOR_PAIR( 1 ) );
     printw("___");
     attroff(COLOR_PAIR(1));
-    mvprintw(4,0, "Widelec uzywany: ");
+    mvprintw(5,0, "Widelec uzywany: ");
     attron( COLOR_PAIR( 2 ) );
     printw("___");
     attroff(COLOR_PAIR(2));
-    mvprintw(5,0, "Zakonczenie po nacisnieciu dowolnego klawisza");
+    mvprintw(6,0, "Zakonczenie po nacisnieciu dowolnego klawisza");
 #pragma endregion
 #pragma region wyswietlanie stolu
     char pion[] = "|";
@@ -252,7 +275,7 @@ void Stol::wyswietl()
 #pragma endregion
 
 #pragma region wyswietlanie filozofow
-    attron( COLOR_PAIR( 3 ) );
+    
     attron( A_BOLD );
     
     
@@ -260,7 +283,46 @@ void Stol::wyswietl()
     {
         if(filozofowie[i].getSiedzi())
         {
-            mvprintw(filozofowie[i].getx(), filozofowie[i].gety(), "o");
+            attron( COLOR_PAIR( 3 ) );
+            int x= filozofowie[i].getx();
+            int y=filozofowie[i].gety();
+            mvprintw(x, y, "o");
+            attroff( COLOR_PAIR( 3 ) );
+            attron( COLOR_PAIR( 4 ) );
+            if(x!=21)
+            {
+                
+                if(filozofowie[i].getStan()==0)
+                {
+                    mvprintw(x-1,y,"?");
+                }
+                else if(filozofowie[i].getStan()==1)
+                {
+                    mvprintw(x-1,y,".");
+                }
+                else if(filozofowie[i].getStan()==2)
+                {
+                    mvprintw(x-1,y,"!");
+                }
+                
+            }
+            else
+            {
+                if(filozofowie[i].getStan()==0)
+                {
+                    mvprintw(x+1,y,"?");
+                }
+                else if(filozofowie[i].getStan()==1)
+                {
+                    mvprintw(x+1,y,".");
+                }
+                else if(filozofowie[i].getStan()==2)
+                {
+                    mvprintw(x+1,y,"!");
+                }
+            }
+            attroff(COLOR_PAIR(4));
+            
         }
         else
         {
@@ -268,7 +330,7 @@ void Stol::wyswietl()
         }
         
     }
-    attroff( COLOR_PAIR( 3 ) );
+    
     attroff(A_BOLD);
 #pragma endregion
 }

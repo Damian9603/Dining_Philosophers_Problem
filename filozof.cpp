@@ -33,6 +33,7 @@ Filozof::Filozof(int indeks, int max, Widelec * wid, WINDOW * ok )
 
 void Filozof::jedz()
 {
+    stan=1;
     //pierwszym zajmowanym widelcem jest widelec z mniejszym ID
 #pragma region zajmowanie widelcow
     if(lewy<prawy)
@@ -65,6 +66,7 @@ void Filozof::jedz()
 
 #pragma region jedzenie
     //czas jedzenia 2s-3s
+    stan=2;
     random=rand()%10000;
     czas = 2000000+(100*random);
     usleep(czas);
@@ -101,6 +103,7 @@ void Filozof::jedz()
 
 void Filozof::mysl()
 {
+    stan = 0;
     //czas myslenia 5s-6s
     int random=rand()%10000;
     int czas = 5000000+(100*random);
@@ -155,4 +158,9 @@ void Filozof::wstan()
 bool Filozof::getSiedzi()
 {
     return siedzi;
+}
+
+int Filozof::getStan()
+{
+    return stan;
 }
