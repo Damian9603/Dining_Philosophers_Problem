@@ -1,0 +1,1 @@
+Solution of dining philosophers problem by using resource hierarchy solution. Program was written in C++ with ncurses. Result were good, but i should use English names of variables, functions and class instead of Polish. I learned about threads in C++, GCC.
